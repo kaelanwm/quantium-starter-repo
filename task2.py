@@ -19,6 +19,9 @@ for f in files:
     # Filter for Pink Morsel only
     df = df[df["product"] == "pink morsel"]
 
+    # Clean price column by removing $ and converting to float
+    df["price"] = df["price"].replace('[\\$,]', '', regex=True).astype(float)
+
     # Compute Sales = quanitity * price
     df["sales"] = df["quantity"] * df["price"]
 
